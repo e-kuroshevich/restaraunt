@@ -8,7 +8,15 @@ class Landing extends React.Component {
     url: "",
   };
   displayList = () => {
-    console.log(this);
+    const { display } = this.state;
+    this.setState({ display: !display });
+  };
+  getTitle = (restaurant) => {
+    const { title, url } = restaurant;
+    this.setState({ title, url, display: false });
+  };
+  goToRestaurant = () => {
+    console.log("go to restaurant!");
   };
   render() {
     return (
@@ -17,21 +25,31 @@ class Landing extends React.Component {
           <div
             onClick={this.displayList}
             className='restaurant_select_top-header'>
-            Select restaurant
+            {this.state.title ? this.state.title : "Select restaurant"}
           </div>
           <div className='arrow_picker'>
             <div className='arrow_picker-up'></div>
             <div className='arrow_picker-down'></div>
           </div>
         </div>
-        <div className='restaurant_select_bottom'>
-          <ul>
-            {restaurants.map((restaurant) => {
-              return <li key={restaurant.id}>{restaurant.title}</li>;
-            })}
-          </ul>
-        </div>
-        <button>Go To restaurant</button>
+        {this.state.display ? (
+          <div className='restaurant_select_bottom'>
+            <ul>
+              {restaurants.map((restaurant) => {
+                return (
+                  <li
+                    onClick={() => this.getTitle(restaurant)}
+                    key={restaurant.id}>
+                    {restaurant.title}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
+        {this.state.title && !this.state.title.display ? (
+          <button onClick={this.goToRestaurant}>Go To restaurant</button>
+        ) : null}
       </div>
     );
   }

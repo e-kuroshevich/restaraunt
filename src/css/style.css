@@ -1,1 +1,14 @@
-html {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.restaurant_select_top {
+  border: 1px solid gray;
+  width: 220px;
+  text-align: center;
+}
+.restaurant_select_top-header {
+  margin: 30px;
+}
+
+button {width: 220px;height: 40px;background-color:tomato; color:white;margin:10px 0 0 0;}
